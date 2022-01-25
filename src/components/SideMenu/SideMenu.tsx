@@ -9,8 +9,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-const drawerWidth: number = 240;
-const menuItems: string[] = ['Assets', 'Issue', 'Send Invite']
+const drawerWidth: number = 200;
+const menuItems: string[] = ['Assets', 'Issue', 'Airdrop']
 
 export const SideMenu: React.FC<unknown> =()=> {
   return (

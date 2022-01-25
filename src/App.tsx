@@ -1,7 +1,8 @@
-import { Box, CssBaseline, Toolbar } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 import React from 'react';
 import { SideMenu } from './components/SideMenu/SideMenu';
 import { TopAppBar } from './components/TopAppBar/TopAppBar';
+import { ActiveAssetsPage } from './pages/ActiveAssetsPage';
 import { HomePage } from './pages/HomePage';
 
 export const App: React.FC = () => {
@@ -10,7 +11,7 @@ export const App: React.FC = () => {
       <CssBaseline />
       <TopAppBar />
       <SideMenu />
-      <HomePage />
+      <ActiveAssetsPage />
     </Box>
   );
 }

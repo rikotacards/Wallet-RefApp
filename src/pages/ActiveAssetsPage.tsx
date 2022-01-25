@@ -6,6 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import { PendingRow } from '../components/PendingRow/PendingRow';
+import { ActiveAssetsTab } from '../tabContents/ActiveAssetsTab';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -25,8 +26,8 @@ export const TabPanel: React.FC<TabPanelProps> = (props: TabPanelProps) => {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{ p: 0 }}>
+          {children}
         </Box>
       )}
     </div>
@@ -57,7 +58,7 @@ export const BasicTabs: React.FC<unknown> =() => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <ActiveAssetsTab/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
@@ -69,15 +70,11 @@ export const BasicTabs: React.FC<unknown> =() => {
   );
 }
 
-export const HomePage: React.FC = () => {
+export const ActiveAssetsPage: React.FC = () => {
   return (
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <BasicTabs/>
-        <AssetRow quantity={100} ticker={'MAXCOIN'}/>
-        <AssetRow quantity={10000} ticker={'ALEXCOIN'}/>
-        <AssetRow quantity={5} ticker={'BCOIN'}/>
-        <PendingRow quantity={100000} ticker={'PENDING'}/>
       </Box>
   )
 }
