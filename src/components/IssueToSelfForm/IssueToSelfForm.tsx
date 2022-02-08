@@ -8,7 +8,8 @@ import { ContractsContext } from '../../providers/ContractsProvider';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    margin: theme.spacing(1, 0, 1, 0)
+    margin: theme.spacing(1, 0, 1, 0), 
+    background: theme.palette.grey[200]
   }
 }))
 
@@ -74,9 +75,8 @@ export const IssueToSelfForm: React.FC<IssueToSelfFormProps> = ({ ticker, handle
         </Typography>
       </FormControl>
       <Card className={classes.root} elevation={0} variant='outlined'>
-        <Typography color='text.secondary' variant='body2' p={1}>
+        <Typography color='text.primary' variant='body2' p={1}>
           The assets will be created directly in your wallet with the attributes you defined when creating the asset account.
-
         </Typography>
       </Card>
 

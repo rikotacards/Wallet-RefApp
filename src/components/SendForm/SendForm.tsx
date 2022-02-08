@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column'
   },
   helpMessage: {
-    margin: theme.spacing(1, 0, 1, 0)
+    margin: theme.spacing(1, 0, 1, 0), 
+    background: theme.palette.grey[200]
   },
 }))
 
@@ -69,7 +70,7 @@ export const SendForm: React.FC<SendFormProps> = ({ ticker }) => {
           size='small'
         />
         <Card elevation={0} variant='outlined' className={classes.helpMessage}>
-          <Typography color='text.secondary' variant='body2' p={1}>
+          <Typography color='text.primary' variant='body2' p={1}>
             This is a one-off send. This means when you send to the specified user, 
             they must accept it first in order for the ownership of the asset to be transferred. 
             This uses the 'propose and accept' pattern. Learn more about this pattern <Link target="_blank" href="https://docs.daml.com/daml/patterns/initaccept.html">here</Link>.

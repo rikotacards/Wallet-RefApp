@@ -60,7 +60,9 @@ export const AssetRow: React.FC<AssetRowProps> = ({ issuer, isIssuedByMeTab, tic
             {quantity}
           </Typography>
         </CardContent>
-        <CardActions sx={{ marginLeft: 'auto' }}>
+        <CardActions sx={{ marginLeft: 'auto'  }}>
+        {!isIssuedByMeTab && issuer === owner && <RowChip requestType={'issuer'} label='Issuer' />}
+
           {isIssuedByMeTab && <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.IssueAirdrop)}>Issue / Airdrop</Button>
           }
           {!isIssuedByMeTab && <Button disabled={ issuer !== owner && !isShareable} variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Send)}>Send</Button>}
@@ -68,7 +70,6 @@ export const AssetRow: React.FC<AssetRowProps> = ({ issuer, isIssuedByMeTab, tic
           <Button variant='outlined' disabled={ issuer !== owner && !isShareable} size="small" onClick={() => selectPopupContent(AssetAction.InviteNewAssetOwner)} >Invite New Asset Owner</Button>
           <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Details)} >Details</Button>
         </CardActions>
-        {!isIssuedByMeTab && issuer === owner && <RowChip requestType={'issuer'} label='Issuer' />}
       </Card>
       <PopUp
         issuer={issuer}

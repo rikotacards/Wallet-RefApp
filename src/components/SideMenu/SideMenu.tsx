@@ -65,6 +65,12 @@ export const SideMenu: React.FC<unknown> = () => {
         <Typography variant='caption' color='text.secondary'>
           Contribute
         </Typography>
+        <Typography variant='caption' color='text.secondary'>
+          Feature Requests
+        </Typography>
+        <Typography variant='caption' color='text.secondary'>
+          Download Daml
+        </Typography>
         </Box>
       </Box>
     </Drawer>

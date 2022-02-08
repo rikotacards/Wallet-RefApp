@@ -29,7 +29,7 @@ interface RowChipProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    marginRight: theme.spacing(0.5)
+    marginRight: theme.spacing(1)
   }
 }))
 

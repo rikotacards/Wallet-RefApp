@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import { Box, Card, FormControl, Typography } from '@mui/material';
+import { Box, Card, FormControl, Typography, Link } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'left'
   },
   helpMessage: {
-    margin: theme.spacing(1, 0, 1, 0)
+    margin: theme.spacing(1, 0, 1, 0), 
+    background: theme.palette.grey[200]
   },
   recipient: {
     marginBottom: theme.spacing(1)
@@ -163,8 +164,8 @@ export const SwapForm: React.FC<SwapFormProps> = ({ ticker }) => {
         </Card>
         
         <Card elevation={0} variant='outlined' className={classes.helpMessage}>
-          <Typography color='text.secondary' variant='body2' p={1}>
-            You will be proposing to swap your assets for the users assets. Once the recipient accepts, the assets will atomocailly swap ownership. Input more information for the end user to help their learning process.
+          <Typography color='text.primary' variant='body2' p={1}>
+            You will be proposing to swap your assets for the users assets. Once the recipient accepts, the assets will atomocailly swap ownership. See how to create atomic swaps using Daml <Link href={'#'}>here</Link>
         </Typography>
         </Card>
         <LoadingButton

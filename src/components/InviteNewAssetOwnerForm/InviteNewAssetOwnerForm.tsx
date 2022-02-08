@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column'
   }, 
   helpMessage: {
-    margin: theme.spacing(1, 0, 1)
+    margin: theme.spacing(1, 0, 1), 
+    background: theme.palette.grey[200]
   }, 
   inviteButton: {
     marginBottom: theme.spacing(0.5)
@@ -46,7 +47,7 @@ export const InviteNewAssetOwnerForm: React.FC<InviteNewAssetOwnerFormProps> = (
           size='small'
         />
         <Card className={classes.helpMessage} elevation={0} variant='outlined'>
-        <Typography color='text.secondary' variant='body2' p={1}>
+        <Typography color='text.primary' variant='body2' p={1}>
           You must create an Asset Account first before you can mint your assets. The asset account holds the assets. Hence this step must come first before you can own any assets.
         </Typography>
       </Card>
