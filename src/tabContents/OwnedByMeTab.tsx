@@ -13,6 +13,8 @@ export const OwnedByMeTab: React.FC = () => {
 )}
         <AssetRow isFungible isAirdroppable isShareable owner={'me'} issuer={'Bernhard'} ticker={'BTOKEN'} quantity={800} isIssuer />
         <AssetRow owner={'me'} issuer ={'Alex'} ticker={'ATOKEN'} quantity={100000} />
+        <AssetRow owner={'me'} issuer ={'THEWEEKEND'} ticker={'TICKET'} quantity={1} />
+
       </>
   )
 }

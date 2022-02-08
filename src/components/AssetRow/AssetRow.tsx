@@ -63,9 +63,9 @@ export const AssetRow: React.FC<AssetRowProps> = ({ issuer, isIssuedByMeTab, tic
         <CardActions sx={{ marginLeft: 'auto' }}>
           {isIssuedByMeTab && <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.IssueAirdrop)}>Issue / Airdrop</Button>
           }
-          {!isIssuedByMeTab && <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Send)}>Send</Button>}
-          {!isIssuedByMeTab && <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Swap)}>Swap</Button>}
-          <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.InviteNewAssetOwner)} >Invite New Asset Owner</Button>
+          {!isIssuedByMeTab && <Button disabled={ !isIssuedByMeTab && !isShareable} variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Send)}>Send</Button>}
+          {!isIssuedByMeTab && <Button disabled={ !isIssuedByMeTab && !isShareable} variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Swap)}>Swap</Button>}
+          <Button variant='outlined' disabled={ !isIssuedByMeTab && !isShareable} size="small" onClick={() => selectPopupContent(AssetAction.InviteNewAssetOwner)} >Invite New Asset Owner</Button>
           <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Details)} >Details</Button>
         </CardActions>
         {!isIssuedByMeTab && issuer === owner && <RowChip requestType={'issuer'} label='Issuer' />}

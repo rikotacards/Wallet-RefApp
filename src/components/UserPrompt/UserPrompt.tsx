@@ -21,7 +21,7 @@ export const UserPrompt: React.FC = () => {
     <Card sx={{ minWidth: 275 }} className={classes.root}>
       <CardContent>
         <Typography variant='body2'  color="text.primary">
-          You have no active accounts or assets. You can either click "CREATE ASSET ACCOUNT" below in the corner, or ask someone in the DA Chat to invite you as a new asset owner.
+          You have not issued any assets. In order to issue assets, you must first create the asset account (the account will hold the assets). Click the below "Create Asset Account" to get started.
         </Typography>
       </CardContent>
     </Card>
