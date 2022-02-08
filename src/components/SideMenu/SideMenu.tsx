@@ -4,6 +4,8 @@ import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import { Link } from "react-router-dom";
+import { Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 
 import ListItemText from '@mui/material/ListItemText';
 import { Divider, ListItemButton, Typography } from '@mui/material';
@@ -14,13 +16,20 @@ interface MenuItem {
   label: string,
   path: string
 }
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    color: theme.palette.text.secondary
+  }
+}))
+
 const menuItems: MenuItem[] = [
   { label: 'My Active Accounts', path: '/' },
   { label: 'Pending Activities', path: '/pending' }]
 
 export const SideMenu: React.FC<unknown> = () => {
   const [selected, setSelected] = React.useState<number>(0);
-
+  const classes = useStyles()
   const onClick = (index: number) => {
     setSelected(index)
   }
@@ -38,7 +47,7 @@ export const SideMenu: React.FC<unknown> = () => {
         <List>
           {menuItems.map((item, index) => (
             <ListItemButton onClick={() => onClick(index)} selected={selected === index} key={index} component={Link} to={item.path}>
-              <ListItemText>
+              <ListItemText className={classes.root}>
                 {item.label}
               </ListItemText>
             </ListItemButton>
@@ -47,11 +56,14 @@ export const SideMenu: React.FC<unknown> = () => {
 
         </List>
       </Box>
-      <Box marginTop={'auto'} marginBottom={4}>
+      <Box marginTop={'auto'} marginBottom={3}>
         <Divider />
-        <Box padding={1}>
-        <Typography>
+        <Box padding={2} flexDirection='column' display='flex'>
+        <Typography variant='caption' color='text.secondary'>
           Documentation
+        </Typography>
+        <Typography variant='caption' color='text.secondary'>
+          Contribute
         </Typography>
         </Box>
       </Box>
