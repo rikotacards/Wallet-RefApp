@@ -1,13 +1,12 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: `${theme.palette.grey[200]}`,
+    backgroundColor: theme.palette.grey[200],
     display: 'flex',
     alignItems: 'center',
     marginTop: theme.spacing(1),

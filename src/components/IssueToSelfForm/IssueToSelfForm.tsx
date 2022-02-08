@@ -9,7 +9,7 @@ import { ContractsContext } from '../../providers/ContractsProvider';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     margin: theme.spacing(1, 0, 1, 0), 
-    background: theme.palette.grey[200]
+    // background: theme.palette.grey[200]
   }
 }))
 

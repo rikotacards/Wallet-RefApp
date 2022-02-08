@@ -7,7 +7,12 @@ import { BrowserRouter } from "react-router-dom";
 import { Pages } from './pages/Pages';
 import { ContractsProvider } from './providers/ContractsProvider';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    mode: 'light'
+  }
+});
+
 
 export const App: React.FC = () => {
   return (
