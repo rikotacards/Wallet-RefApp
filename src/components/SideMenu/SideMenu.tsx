@@ -1,40 +1,51 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import { Link } from "react-router-dom";
+
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { ListItemButton } from '@mui/material';
 
 const drawerWidth: number = 200;
-const menuItems: string[] = ['Assets', 'Issue', 'Airdrop']
 
-export const SideMenu: React.FC<unknown> =()=> {
+interface MenuItem {
+  label: string,
+  path: string
+}
+const menuItems: MenuItem[] = [
+  { label: 'My Active Accounts', path: '/' },
+  { label: 'Pending Activities', path: '/pending' }]
+
+export const SideMenu: React.FC<unknown> = () => {
+  const [selected, setSelected] = React.useState<number>(0);
+
+  const onClick = (index: number) => {
+    setSelected(index)
+  }
   return (
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-        }}
-      >
-        <Toolbar />
-        <Box sx={{ overflow: 'auto' }}>
-          <List>
-            {menuItems.map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-      </Drawer>
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+      }}
+    >
+      <Toolbar />
+      <Box sx={{ overflow: 'auto' }}>
+        <List>
+          {menuItems.map((item, index) => (
+            <ListItemButton onClick={() => onClick(index)} selected = {selected === index} key={index} component={Link} to={item.path}>
+               <ListItemText>
+                 {item.label}
+                   </ListItemText> 
+              </ListItemButton>
+                
+          ))}
+        </List>
+      </Box>
+    </Drawer>
   );
 }

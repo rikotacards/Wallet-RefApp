@@ -2,17 +2,25 @@ import { Box, CssBaseline } from '@mui/material';
 import React from 'react';
 import { SideMenu } from './components/SideMenu/SideMenu';
 import { TopAppBar } from './components/TopAppBar/TopAppBar';
-import { ActiveAssetsPage } from './pages/ActiveAssetsPage';
-import { HomePage } from './pages/HomePage';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter } from "react-router-dom";
+import { Pages } from './pages/Pages';
+
+const theme = createTheme();
 
 export const App: React.FC = () => {
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <TopAppBar />
-      <SideMenu />
-      <ActiveAssetsPage />
-    </Box>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <TopAppBar />
+          <SideMenu />
+          <Pages/>
+        </Box>
+      </ThemeProvider>
+    </BrowserRouter>
+
   );
 }
 

@@ -4,44 +4,82 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material';
 import { PopUp } from '../PopUp/PopUp';
+import { RowChip } from '../RowChip/RowChip';
+import { Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import { AssetAction } from '../../types/AssetAction';
+
+//TODO: issuer and owner currently hardcoded as 'me'
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing(1),
+    paddingRight: theme.spacing(1)
+  },
+  quantity: {
+    marginRight: theme.spacing(1)
+  }
+}))
 
 interface AssetRowProps {
-  ticker?: string;
+  ticker: string;
   quantity?: number;
+  isIssuer?: boolean;
+  isIssuedByMeTab?: boolean;
+  issuer: string;
+  owner: string;
+  isShareable?: boolean;
+  isFungible?: boolean;
+  isAirdroppable?: boolean;
 }
 
-export const AssetRow: React.FC<AssetRowProps> = ({ticker,quantity}) => {
-  const theme = useTheme()
-  const [isOpen, setIsOpen] = React.useState<boolean>(false)
-  
-  const handleOpen = () => {
-    setIsOpen(true)
+
+export const AssetRow: React.FC<AssetRowProps> = ({ issuer, isIssuedByMeTab, ticker, quantity, owner, isShareable, isFungible, isAirdroppable }) => {
+  const classes = useStyles()
+  const [popupContent, setPopupContent] = React.useState<AssetAction | undefined>(undefined)
+
+  const selectPopupContent = (contentType: AssetAction) => {
+    setPopupContent(contentType)
   }
   const handleClose = () => {
-    setIsOpen(false);
+    setPopupContent(undefined);
   }
 
   return (
     <>
-    <Card sx={{ minWidth: 275,marginBottom: theme.spacing(1), display: 'flex', alignContent: 'center' }}>
-      <CardContent sx={{display: 'flex'}}>
-        <Typography sx={{ fontSize: 14, marginRight: theme.spacing(1) }} color="text.secondary" >
-          {quantity}
-        </Typography>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" >
-          {ticker}
-        </Typography>
-      </CardContent>
-      <CardActions sx={{marginLeft: 'auto'}}>
-        <Button variant='outlined' size="small" onClick={handleOpen}>Send</Button>
-        <Button variant='outlined' size="small">Swap</Button>
-        <Button variant='outlined' size="small">Invite</Button>
-        <Button variant='outlined' size="small">Details</Button>
-      </CardActions>
-    </Card>
-    <PopUp isOpen={isOpen} handleClose={handleClose}/>
+      <Card sx={{ minWidth: 275 }} className={classes.root}>
+        <CardContent sx={{ display: 'flex' }}>
+          <Typography sx={{ fontSize: 14, marginRight: 1 }} color="text.secondary" >
+            {ticker}
+          </Typography>
+          <Typography className={classes.quantity} sx={{ fontSize: 14 }} color="text.secondary" >
+            {quantity}
+          </Typography>
+        </CardContent>
+        <CardActions sx={{ marginLeft: 'auto' }}>
+          {isIssuedByMeTab && <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.IssueAirdrop)}>Issue / Airdrop</Button>
+          }
+          {!isIssuedByMeTab && <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Send)}>Send</Button>}
+          {!isIssuedByMeTab && <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Swap)}>Swap</Button>}
+          <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.InviteNewAssetOwner)} >Invite New Asset Owner</Button>
+          <Button variant='outlined' size="small" onClick={() => selectPopupContent(AssetAction.Details)} >Details</Button>
+        </CardActions>
+        {!isIssuedByMeTab && issuer === owner && <RowChip requestType={'issuer'} label='Issuer' />}
+      </Card>
+      <PopUp
+        issuer={issuer}
+        owner={owner}
+        isAirdroppable={!!isAirdroppable}
+        isFungible={!!isFungible}
+        quantity={quantity || 0}
+        isShareable={isShareable || false}
+        ticker={ticker}
+        assetAction={popupContent}
+        handleClose={handleClose} />
     </>
   );
 }

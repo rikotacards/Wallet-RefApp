@@ -1,42 +1,47 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import React from 'react';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { AssetAction } from '../../types/AssetAction';
+import { PopupContent } from '../PopupContent/PopupContent';
+import { Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+
+export interface ContentTypes {
+  issueAirdrop: JSX.Element
+}
 
 interface PopUpProps {
-  isOpen: boolean
-  handleClose: () => void
+  assetAction?: AssetAction;
+  handleClose: () => void;
+  ticker: string;
+  issuer: string;
+  owner: string;
+  quantity: number;
+  isFungible: boolean;
+  isShareable: boolean;
+  isAirdroppable: boolean;
 }
-export const PopUp: React.FC<PopUpProps> = ({isOpen, handleClose}) => {
 
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    minWidth: '400px'
+  }
+}))
+
+
+export const PopUp: React.FC<PopUpProps> = ({ owner, issuer, isAirdroppable, isFungible, isShareable, quantity, ticker, assetAction, handleClose }) => {
+  const classes = useStyles()
   return (
-    <div>
-      <Dialog open={isOpen} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog className={classes.root} open={assetAction !== undefined} onClose={handleClose}>
+      <PopupContent 
+      quantity={quantity}
+      owner={owner} 
+      issuer={issuer} 
+      isFungible={isFungible} 
+      isAirdroppable={isAirdroppable} 
+      isShareable={isAirdroppable} 
+      ticker={ticker} 
+      contentType={assetAction} 
+      handleClose={handleClose} />
+    </Dialog>
   );
 }

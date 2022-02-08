@@ -23,7 +23,7 @@ export const TopAppBar: React.FC =()=> {
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
     <Toolbar>
       <Typography variant="h6" noWrap component="div">
-        RefApp Wallet
+        Wallet RefApp
       </Typography>
     </Toolbar>
   </AppBar>

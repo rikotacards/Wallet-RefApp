@@ -1,11 +1,10 @@
 import {  Toolbar } from '@mui/material';
 import Box from '@mui/material/Box';
 import React from 'react';
-import { AssetRow } from '../components/AssetRow/AssetRow';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import { PendingRow } from '../components/PendingRow/PendingRow';
+import { IssuedByMeTab } from '../tabContents/IssuedByMeTab';
+import { OwnedByMeTab } from '../tabContents/OwnedByMeTab';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -25,8 +24,8 @@ export const TabPanel: React.FC<TabPanelProps> = (props: TabPanelProps) => {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{ p: 0 }}>
+          {children}
         </Box>
       )}
     </div>
@@ -49,18 +48,17 @@ export const BasicTabs: React.FC<unknown> =() => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ marginBottom:1, borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Active Assets" {...a11yProps(0)} />
-          <Tab label="Pending" {...a11yProps(1)} />
-          <Tab label="Activity" {...a11yProps(2)} />
+          <Tab label="Issued By Me" {...a11yProps(0)} />
+          <Tab label="Owned By Me" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <IssuedByMeTab/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <OwnedByMeTab/>
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
@@ -69,15 +67,11 @@ export const BasicTabs: React.FC<unknown> =() => {
   );
 }
 
-export const HomePage: React.FC = () => {
+export const MyActiveAccountsPage: React.FC = () => {
   return (
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <BasicTabs/>
-        <AssetRow quantity={100} ticker={'MAXCOIN'}/>
-        <AssetRow quantity={10000} ticker={'ALEXCOIN'}/>
-        <AssetRow quantity={5} ticker={'BCOIN'}/>
-        <PendingRow quantity={100000} ticker={'PENDING'}/>
       </Box>
   )
 }
