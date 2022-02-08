@@ -15,7 +15,8 @@ interface CreateAccountFormProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1), 
+    background: theme.palette.grey[200]
   }
 }))
 
