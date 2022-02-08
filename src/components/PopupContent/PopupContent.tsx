@@ -1,4 +1,4 @@
-import { SendPopupContent, SendPopupContentProps } from "../../SendPopupContent/SendPopupContent"
+import { SendPopupContent, SendPopupContentProps } from "../SendPopupContent/SendPopupContent"
 import { AssetAction } from "../../types/AssetAction"
 import { AssetDetailsPopupContent, AssetDetailsPopupContentProps } from "../AssetDetailsPopupContent/AssetDetailsPopupContent"
 import { CreateAccountPopupContent, CreateAccountPopupContentProps } from "../CreateAccountPopupContent/CreateAccountPopupContent"
@@ -39,7 +39,10 @@ interface PopupContentProps {
 
 export const PopupContent: React.FC<PopupContentProps> = ({ quantity, issuer, owner, ticker, contentType, handleClose, isAirdroppable, isFungible, isShareable }) => {
   if (contentType === undefined) {
-    return (<></>)
+    return (
+      <>
+      </>
+    )
   }
   const Selected = popupContentTypes[contentType]
   return <Selected

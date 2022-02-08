@@ -4,8 +4,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { Card, FormControl, Typography } from '@mui/material';
 import React from 'react';
-import { tempState } from '../../tempState/tempState';
 import { LoadingButton } from '@mui/lab';
+import { ContractsContext } from '../../providers/ContractsProvider';
 
 interface CreateAccountFormProps {
   handleClose: () => void;
@@ -19,6 +19,7 @@ export const CreateAccountForm: React.FC<CreateAccountFormProps> = ({ handleClos
   const [isFungible, setFungible] = React.useState<boolean>(true);
   const [isAirdroppable, setIsAirdroppable] = React.useState<boolean>(true);
 
+  const contractsContext = React.useContext(ContractsContext)
 
 
   const toggleSubmitting = () => {
@@ -30,7 +31,7 @@ export const CreateAccountForm: React.FC<CreateAccountFormProps> = ({ handleClos
   }
 
   const submit = () => {
-    tempState.assetAccounts.push({
+    contractsContext.addNewAccounts({
       quantity: 0,
       ticker,
       issuer: 'me',
@@ -47,7 +48,7 @@ export const CreateAccountForm: React.FC<CreateAccountFormProps> = ({ handleClos
     }, 1000)
   }
   return (
-    <>
+    <div>
       <FormControl fullWidth>
         <TextField
           autoFocus
@@ -86,7 +87,6 @@ export const CreateAccountForm: React.FC<CreateAccountFormProps> = ({ handleClos
       <LoadingButton
         loading={isLoading}
         fullWidth
-        loadingPosition="end"
         variant="outlined"
         onClick={submit}
         sx={{
@@ -95,7 +95,7 @@ export const CreateAccountForm: React.FC<CreateAccountFormProps> = ({ handleClos
       >
         Create
       </LoadingButton>
-    </>
+    </div>
 
   );
 }

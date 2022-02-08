@@ -1,10 +1,10 @@
 import TextField from '@mui/material/TextField';
-import { Button, Card, CircularProgress, FormControl, Typography } from '@mui/material';
+import {  Card,  FormControl, Typography } from '@mui/material';
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
-import { tempState } from '../../tempState/tempState';
 import { LoadingButton } from '@mui/lab';
+import { ContractsContext } from '../../providers/ContractsProvider';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -23,15 +23,17 @@ interface IssueToSelfFormProps {
 export const IssueToSelfForm: React.FC<IssueToSelfFormProps> = ({ ticker, handleClose }) => {
   const classes = useStyles()
   const [isLoading, setLoading] = React.useState<boolean>(false);
-
   const [quantity, setQuantity] = React.useState<number>(0);
+  const contractsContext = React.useContext(ContractsContext)
 
   const onMint = () => {
-
-    const asset = tempState.assetAccounts.find((x) => x.ticker === ticker)
+    
+    const asset = contractsContext.state.assetAccounts[ticker]
     if (asset) {
-      asset.quantity = quantity
       setLoading(true);
+      asset.quantity = quantity
+      contractsContext.addNewAccounts(asset)
+      
     }
     setTimeout(() => {
       handleClose()
@@ -81,7 +83,6 @@ export const IssueToSelfForm: React.FC<IssueToSelfFormProps> = ({ ticker, handle
       <LoadingButton
         loading={isLoading}
         fullWidth
-        loadingPosition="end"
         variant="outlined"
         onClick={onMint}
         sx={{
@@ -90,7 +91,6 @@ export const IssueToSelfForm: React.FC<IssueToSelfFormProps> = ({ ticker, handle
       >
         Mint
       </LoadingButton>
-      
 
     </>
   );

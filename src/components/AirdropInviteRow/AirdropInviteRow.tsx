@@ -69,7 +69,6 @@ export const AirdropInviteRow: React.FC<AirdropInviteRowProps> = ({isAccepted}) 
       />
       <LoadingButton
         loading={false}
-        loadingPosition="end"
         variant="outlined"
         size='medium'
         disabled={!isAccepted}

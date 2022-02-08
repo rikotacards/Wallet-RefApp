@@ -60,9 +60,6 @@ export const BasicTabs: React.FC<unknown> =() => {
       <TabPanel value={value} index={1}>
         <OwnedByMeTab/>
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
     </Box>
   );
 }

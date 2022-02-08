@@ -32,16 +32,16 @@ export const PopUp: React.FC<PopUpProps> = ({ owner, issuer, isAirdroppable, isF
   const classes = useStyles()
   return (
     <Dialog className={classes.root} open={assetAction !== undefined} onClose={handleClose}>
-      <PopupContent 
-      quantity={quantity}
-      owner={owner} 
-      issuer={issuer} 
-      isFungible={isFungible} 
-      isAirdroppable={isAirdroppable} 
-      isShareable={isAirdroppable} 
-      ticker={ticker} 
-      contentType={assetAction} 
-      handleClose={handleClose} />
+      <PopupContent
+        quantity={quantity}
+        owner={owner}
+        issuer={issuer}
+        isFungible={isFungible}
+        isAirdroppable={isAirdroppable}
+        isShareable={isAirdroppable}
+        ticker={ticker}
+        contentType={assetAction}
+        handleClose={handleClose} />
     </Dialog>
   );
 }
