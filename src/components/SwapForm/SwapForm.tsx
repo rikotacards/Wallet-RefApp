@@ -2,11 +2,11 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import { Box, Card, FormControl, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
-import SendIcon from '@mui/icons-material/Send';
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 
 
 interface SwapFormProps {
@@ -168,7 +168,7 @@ export const SwapForm: React.FC<SwapFormProps> = ({ ticker }) => {
         </Typography>
         </Card>
         <LoadingButton
-          endIcon={<SendIcon />}
+          endIcon={<SwapHorizIcon/>}
           loading={false}
           fullWidth
           loadingPosition="end"
